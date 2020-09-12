@@ -18,27 +18,44 @@ public class CameraControl : MonoBehaviour
 
     void Update()
     {
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
+        //groundedPlayer = controller.isGrounded;
+        //if (groundedPlayer && playerVelocity.y < 0)
+        //{
+        //    playerVelocity.y = 0f;
+        //}
+
+        //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        //controller.Move(move * Time.deltaTime * playerSpeed);
+
+        //if (move != Vector3.zero)
+        //{
+        //    gameObject.transform.forward = move;
+        //}
+
+        //// Changes the height position of the player..
+        //if (Input.GetButtonDown("Jump") && groundedPlayer)
+        //{
+        //    playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        //}
+
+        //playerVelocity.y += gravityValue * Time.deltaTime;
+        //controller.Move(playerVelocity * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            playerVelocity.y = 0f;
+            transform.position += transform.forward;
         }
-
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-        if (move != Vector3.zero)
+        if (Input.GetKey(KeyCode.DownArrow))
         {
-            gameObject.transform.forward = move;
+            transform.position -= transform.forward;
         }
-
-        // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            transform.Rotate(new Vector3(0, -5));
         }
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Rotate(new Vector3(0, +5));
+        }
     }
 }

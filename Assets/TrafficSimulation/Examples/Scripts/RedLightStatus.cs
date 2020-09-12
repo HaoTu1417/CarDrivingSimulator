@@ -11,28 +11,45 @@ public class RedLightStatus : MonoBehaviour
 
     public int lightGroupId;  // Belong to traffic light 1 or 2?
     public Intersection intersection;
-    
+
     Light pointLight;
 
     public GameObject greenLight;
     public GameObject redLight;
     public GameObject yellowLight;
 
-    void Start(){
+    void Start()
+    {
         pointLight = this.transform.GetChild(0).GetComponent<Light>();
         SetTrafficLightColor();
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update()
+    {
         SetTrafficLightColor();
     }
 
-    void SetTrafficLightColor(){
-        if(lightGroupId == intersection.curLightRed)
-            pointLight.color = new Color(1, 0, 0);
+    void SetTrafficLightColor()
+    {
+
+        //if (intersection == null)
+        //{
+
+        //    return;
+        //}
+        if (lightGroupId == intersection.curLightRed)
+        {
+            //pointLight.color = new Color(1, 0, 0);
+            ChangeLightToRed();
+        }
+
         else
-            pointLight.color = new Color(0, 1, 0);
+        {
+            ChangeLightToGreen();
+            //pointLight.color = new Color(0, 1, 0);
+        }
+
     }
 
     void ChangeLightToRed()

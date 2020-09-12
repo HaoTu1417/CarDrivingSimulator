@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/mcp_night 1.unity
+    guid: 7cecfcf1b864b4d40bd856e7923f59aa
   m_configObjects: {}
