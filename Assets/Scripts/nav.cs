@@ -16,7 +16,7 @@ public class nav : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             naav.SetDestination(transform.position);
         }

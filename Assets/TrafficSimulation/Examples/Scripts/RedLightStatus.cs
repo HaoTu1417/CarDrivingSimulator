@@ -33,11 +33,11 @@ public class RedLightStatus : MonoBehaviour
     void SetTrafficLightColor()
     {
 
-        //if (intersection == null)
-        //{
+        if (intersection == null)
+        {
 
-        //    return;
-        //}
+            return;
+        }
         if (lightGroupId == intersection.curLightRed)
         {
             //pointLight.color = new Color(1, 0, 0);
