@@ -89,9 +89,17 @@ namespace TrafficSimulation {
             GameObject waypoint = trafficSystem.segments[curSeg].waypoints[curWp].gameObject;
             //Position of next waypoint relative to the car
             Vector3 nextWp = this.transform.InverseTransformPoint(new Vector3(waypoint.transform.position.x, this.transform.position.y, waypoint.transform.position.z));
+            try
+            {
+                //Set agent destination depending on waypoint
+                agent.SetDestination(waypoint.transform.position);
+            }
+            catch (System.Exception)
+            {
 
-            //Set agent destination depending on waypoint
-            agent.SetDestination(waypoint.transform.position);
+                Debug.Log("loi:" + gameObject.name);
+            }
+           
 
             //Go to next waypoint if arrived to current
             if(nextWp.magnitude < waypointThresh){
