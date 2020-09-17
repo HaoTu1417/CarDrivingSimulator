@@ -13,7 +13,7 @@ public class CameraControl : MonoBehaviour
 
     private void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        //controller = gameObject.AddComponent<CharacterController>();
     }
 
     void Update()

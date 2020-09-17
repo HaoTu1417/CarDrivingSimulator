@@ -84,9 +84,9 @@ namespace TrafficSimulation {
             MoveVehicle(topSpeed);
         }
 
-
+        public GameObject waypoint;
         void WaypointChecker(){
-            GameObject waypoint = trafficSystem.segments[curSeg].waypoints[curWp].gameObject;
+            waypoint = trafficSystem.segments[curSeg].waypoints[curWp].gameObject;
             //Position of next waypoint relative to the car
             Vector3 nextWp = this.transform.InverseTransformPoint(new Vector3(waypoint.transform.position.x, this.transform.position.y, waypoint.transform.position.z));
             try
