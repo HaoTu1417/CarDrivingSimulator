@@ -7,6 +7,7 @@ TagManager:
   - Ladder
   - LadderLandingPad
   - Waypoint
+  - AutonomousVehicle
   layers:
   - Default
   - TransparentFX
