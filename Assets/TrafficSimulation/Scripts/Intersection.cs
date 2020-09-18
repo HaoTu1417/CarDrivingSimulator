@@ -69,6 +69,12 @@ namespace TrafficSimulation{
             //     vehicle.GetComponent<CarAI>().hasToStop = true;
             // }
             // vehiclesQueue.Add(vehicle);
+            CarAI otherVehicleAI = vehicle.GetComponent<CarAI>();
+            if (otherVehicleAI == null)
+            {
+                return;
+            }
+
 
             CarAI carAI = vehicle.GetComponent<CarAI>();
             if(!IsOnPrioritySegment(carAI)){
@@ -99,6 +105,12 @@ namespace TrafficSimulation{
             //     vehiclesQueue[0].GetComponent<CarAI>().hasToStop = false;
             //     vehiclesQueue[0].GetComponent<CarAI>().hasToGo = true;
             // }
+            CarAI otherVehicleAI = vehicle.GetComponent<CarAI>();
+            if (otherVehicleAI == null)
+            {
+                return;
+            }
+
 
             vehicle.GetComponent<CarAI>().hasToGo = false;
             vehiclesInIntersection.Remove(vehicle);
@@ -111,6 +123,13 @@ namespace TrafficSimulation{
         }
 
         void TriggerLight(GameObject vehicle){
+            CarAI otherVehicleAI = vehicle.GetComponent<CarAI>();
+            if (otherVehicleAI == null)
+            {
+                return;
+            }
+
+
             int vehicleSegment = vehicle.GetComponent<CarAI>().curSeg;
             if(IsRedLightSegment(vehicleSegment)){
                 vehicle.GetComponent<CarAI>().hasToStop = true;
@@ -122,8 +141,13 @@ namespace TrafficSimulation{
         }
 
         void ExitLight(GameObject vehicle){
-            vehicle.GetComponent<CarAI>().hasToStop = false;
-            vehicle.GetComponent<CarAI>().hasToGo = false;
+            CarAI otherVehicleAI = vehicle.GetComponent<CarAI>();
+            if (otherVehicleAI == null)
+            {
+                return;
+            }
+            otherVehicleAI.hasToStop = false;
+            otherVehicleAI.hasToGo = false;
         }
 
         bool IsRedLightSegment(int vehicleSegment){

@@ -110,6 +110,21 @@ namespace TrafficSimulation {
                 }
             }
         }
+        
+        bool CheckAvailableHit(CarAI otherCarAI)
+        {
+            if (otherCarAI.carController == null)
+            {
+                return true;
+            }
+            else
+            {
+                return otherCarAI.carController != null && carController.Topspeed > otherCarAI.carController.Topspeed;
+            }
+            
+             
+        }
+
 
         /// If vehicle within raycast hit length, return its speed. Otherwise return the original initial top speed of the vehicle.
         /// In order to avoid that the current car is going fast than the front one and collide.
@@ -132,8 +147,10 @@ namespace TrafficSimulation {
                 float hitDist;
                 CastRay(anchor, a, this.transform.forward, raycastLength, out otherCarAI, out hitDist);
 
+                
                 //If rays collide with a car, adapt the top speed to be the same as the one of the front vehicle
-                if(otherCarAI != null && otherCarAI.carController != null && carController.Topspeed > otherCarAI.carController.Topspeed){
+                if (otherCarAI != null && CheckAvailableHit(otherCarAI)){
+
                     //Check if the car is on the same lane or not. If not the same lane, then we do not adapt the vehicle speed to the one in front
                     //(it just means that the rays are hitting a car on the opposite lane...which shouldn't influence the car's speed)
                     if(hasToGo && !IsOnSameLane(otherCarAI.transform))
@@ -142,11 +159,12 @@ namespace TrafficSimulation {
                     //If the hit distance is too close, "emergency slow down" the car so they don't collide
                     else if(hitDist < 2f)
                         return topSpeed = 0f;
-                    
+                    float otherCarTopSpeed = otherCarAI.carController==null ? 0 : otherCarAI.carController.Topspeed;
                     //Otherwise adapt the car speed to the one in front
-                    topSpeed = otherCarAI.carController.Topspeed - 0.05f;
+                    topSpeed = otherCarTopSpeed - 0.05f;
                     break;
                 }
+                
             }
             
             //If no collision detected then keep the car top speed
@@ -169,7 +187,12 @@ namespace TrafficSimulation {
 
         
         void CastRay(Vector3 anchor, float angle, Vector3 dir, float length, out CarAI outCarAI, out float outHitDistance){
-
+            //Debug.Log("--------------------------");
+            //Debug.Log("anchor : " + anchor);
+            //Debug.Log("angle : " + angle);
+            //Debug.Log("dir : " + dir);
+            //Debug.Log("length : " + length);
+            //Debug.Log("--------------------------");
             outCarAI = null;
             outHitDistance = -1f;
 
@@ -182,6 +205,13 @@ namespace TrafficSimulation {
             if(Physics.Raycast(anchor, Quaternion.Euler(0, angle, 0) * dir, out hit, length, layer)){
                 outCarAI = hit.collider.GetComponentInParent<CarAI>();
                 outHitDistance = hit.distance;
+                Debug.DrawRay(anchor, Quaternion.Euler(0, angle, 0) * dir * length, new Color(1, 0, 0, 0.5f));
+                
+            }
+            else
+            {
+                Debug.DrawRay(anchor, Quaternion.Euler(0, angle, 0) * dir * length, new Color(0, 0, 1, 0.5f));
+                
             }
         }
 

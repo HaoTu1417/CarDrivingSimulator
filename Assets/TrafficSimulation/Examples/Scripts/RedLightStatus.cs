@@ -54,6 +54,8 @@ public class RedLightStatus : MonoBehaviour
 
     void ChangeLightToRed()
     {
+        if (greenLight == null || redLight == null || yellowLight == null)
+            return;
         greenLight.SetActive(false);
         redLight.SetActive(true);
         yellowLight.SetActive(false);
@@ -61,6 +63,8 @@ public class RedLightStatus : MonoBehaviour
 
     void ChangeLightToGreen()
     {
+        if (greenLight == null || redLight == null || yellowLight == null)
+            return;
         greenLight.SetActive(true);
         redLight.SetActive(false);
         yellowLight.SetActive(false);
@@ -68,6 +72,8 @@ public class RedLightStatus : MonoBehaviour
 
     void ChangeLightToYellow()
     {
+        if (greenLight == null || redLight == null || yellowLight == null)
+            return;
         greenLight.SetActive(false);
         redLight.SetActive(false);
         yellowLight.SetActive(true);
