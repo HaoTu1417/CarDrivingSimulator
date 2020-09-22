@@ -37,9 +37,9 @@ namespace TrafficSimulation {
         void Start()
         {
             carController = this.GetComponent<VehiclePhysics>();
-            if(carController == null)
+            if (trafficSystem == null)
             {
-                Debug.Log(gameObject.name);
+                trafficSystem = GameObject.Find("Traffic System").GetComponent<TrafficSystem>();
             }
             initialTopSpeed = Random.Range(minTopSpeed, maxTopSpeed);
             carController.Topspeed = initialTopSpeed;
