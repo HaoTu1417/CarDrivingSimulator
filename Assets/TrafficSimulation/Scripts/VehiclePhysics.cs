@@ -131,7 +131,7 @@ namespace TrafficSimulation
         {
             if (!enabled)
                 return;
-
+            
             // Clamp the input values
             steering = Mathf.Clamp(steering, -1.0f, 1.0f);
             acceleration = Mathf.Clamp(acceleration, 0.0f, 1.0f);
