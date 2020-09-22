@@ -131,7 +131,7 @@ namespace TrafficSimulation
         {
             if (!enabled)
                 return;
-
+            
             // Clamp the input values
             steering = Mathf.Clamp(steering, -1.0f, 1.0f);
             acceleration = Mathf.Clamp(acceleration, 0.0f, 1.0f);
@@ -163,15 +163,15 @@ namespace TrafficSimulation
 
         private void Update()
         {
-            // Update wheel representation
-            Quaternion quat;
-            Vector3 position;
-            for (int i = 0; i < WheelColliders.Count; i++)
-            {
-                WheelColliders[i].GetWorldPose(out position, out quat);
-                WheelMeshes[i].transform.position = position;
-                WheelMeshes[i].transform.rotation = quat;
-            }
+            //// Update wheel representation
+            //Quaternion quat;
+            //Vector3 position;
+            //for (int i = 0; i < WheelColliders.Count; i++)
+            //{
+            //    WheelColliders[i].GetWorldPose(out position, out quat);
+            //    WheelMeshes[i].transform.position = position;
+            //    WheelMeshes[i].transform.rotation = quat;
+            //}
         }
 
         //--------------------------------------------------------------------------------------------------------------

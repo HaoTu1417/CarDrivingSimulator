@@ -37,7 +37,10 @@ namespace TrafficSimulation {
         void Start()
         {
             carController = this.GetComponent<VehiclePhysics>();
-
+            if(carController == null)
+            {
+                Debug.Log(gameObject.name);
+            }
             initialTopSpeed = Random.Range(minTopSpeed, maxTopSpeed);
             carController.Topspeed = initialTopSpeed;
 
@@ -183,6 +186,7 @@ namespace TrafficSimulation {
 
             //Move the car
             carController.Move(steering, 1f, 0f);
+            Debug.Log("move vehicle");
         }
 
         
